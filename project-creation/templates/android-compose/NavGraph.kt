@@ -1,1 +1,24 @@
-cGFja2FnZSB7e1BBQ0tBR0VfTkFNRX19Lm5hdmlnYXRpb24KCmltcG9ydCBhbmRyb2lkeC5jb21wb3NlLnJ1bnRpbWUuQ29tcG9zYWJsZQppbXBvcnQgYW5kcm9pZHgubmF2aWdhdGlvbi5jb21wb3NlLk5hdkhvc3QKaW1wb3J0IGFuZHJvaWR4Lm5hdmlnYXRpb24uY29tcG9zZS5jb21wb3NhYmxlCmltcG9ydCBhbmRyb2lkeC5uYXZpZ2F0aW9uLmNvbXBvc2UucmVtZW1iZXJOYXZDb250cm9sbGVyCmltcG9ydCB7e1BBQ0tBR0VfTkFNRX19LnNjcmVlbnMuSG9tZVNjcmVlbgoKc2VhbGVkIGNsYXNzIFNjcmVlbih2YWwgcm91dGU6IFN0cmluZykgewogICAgb2JqZWN0IEhvbWUgOiBTY3JlZW4oImhvbWUiKQogICAgLy8gQWRkIG1vcmUgc2NyZWVucyBoZXJlOgogICAgLy8gb2JqZWN0IERldGFpbCA6IFNjcmVlbigiZGV0YWlsL3tpZH0iKQp9CgpAQ29tcG9zYWJsZQpmdW4gQXBwTmF2R3JhcGgoKSB7CiAgICB2YWwgbmF2Q29udHJvbGxlciA9IHJlbWVtYmVyTmF2Q29udHJvbGxlcigpCiAgICBOYXZIb3N0KG5hdkNvbnRyb2xsZXIgPSBuYXZDb250cm9sbGVyLCBzdGFydERlc3RpbmF0aW9uID0gU2NyZWVuLkhvbWUucm91dGUpIHsKICAgICAgICBjb21wb3NhYmxlKFNjcmVlbi5Ib21lLnJvdXRlKSB7CiAgICAgICAgICAgIEhvbWVTY3JlZW4obmF2Q29udHJvbGxlciA9IG5hdkNvbnRyb2xsZXIpCiAgICAgICAgfQogICAgICAgIC8vIFJlZ2lzdGVyIGFkZGl0aW9uYWwgc2NyZWVucyBoZXJlCiAgICB9Cn0K
+package {{PACKAGE_NAME}}.navigation
+
+import androidx.compose.runtime.Composable
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import {{PACKAGE_NAME}}.screens.HomeScreen
+
+sealed class Screen(val route: String) {
+    object Home : Screen("home")
+    // Add more screens here:
+    // object Detail : Screen("detail/{id}")
+}
+
+@Composable
+fun AppNavGraph() {
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = Screen.Home.route) {
+        composable(Screen.Home.route) {
+            HomeScreen(navController = navController)
+        }
+        // Register additional screens here
+    }
+}
